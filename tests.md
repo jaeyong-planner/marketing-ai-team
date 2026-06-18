@@ -63,7 +63,17 @@
 | T-X3 | lead_submit 이벤트 | lead-form 제출 | dataLayer + trackServer | NOT_RUN | Pixel Helper 수동 |
 | T-X4 | UTM 가이드 | `docs/utm-guide.md` | 템플릿 존재 | **PASS** | 2026-06-19 |
 
-## 7. KMS / ProjectOps
+## 8. 콘텐츠 배치 / VPS (P3-2)
+
+| ID | 항목 | 명령 | 성공 기준 | 마지막 결과 | 일시 |
+|----|------|------|-----------|-------------|------|
+| T-B1 | 배치 생성 | `npm run batch:content` | blog+social+email | **PASS** | 2026-06-19 |
+| T-B2 | 배치 검증 | `npm run test:batch` | calendar 15+, md files | **PASS** | 2026-06-19 |
+| T-B3 | VPS 준비 | `npm run test:vps-ready` | files+topics 10+ | **PASS** | 2026-06-19 |
+| T-B4 | KPI 대시보드 | `/admin/analytics` | build + render | **PASS** | 2026-06-19 |
+| T-B5 | Hero A/B | 랜딩 방문 | variant cookie | NOT_RUN | 수동 |
+
+## 9. KMS / ProjectOps
 
 | ID | 항목 | 성공 기준 | 마지막 결과 | 일시 |
 |----|------|-----------|-------------|------|
@@ -72,7 +82,7 @@
 | T-K3 | 벡터 인덱스 갱신 | query_aios_kms.py | BLOCKED | scripts 없음 |
 | T-K4 | ProjectOps 5파일 | 루트 존재 | **PASS** | 2026-06-19 |
 
-## 8. 회귀 체크리스트 (릴리스 전)
+## 10. 회귀 체크리스트 (릴리스 전)
 
 - [x] T-G1 PASS
 - [x] T-A1 PASS
@@ -81,7 +91,7 @@
 - [ ] `.env.local` gitignore 확인
 - [ ] 비밀키 커밋 없음 (`git status`)
 
-## 9. 실패 시 기록 위치
+## 11. 실패 시 기록 위치
 
 - 실패 로그 → `/status.md` append
 - 새 테스트 항목 → 이 파일에 ID 추가
