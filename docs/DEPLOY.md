@@ -1,5 +1,15 @@
 # 프로덕션 배포 (Vercel + Supabase + VPS)
 
+## GitHub
+
+**Repository**: https://github.com/jaeyong-planner/marketing-ai-team
+
+```powershell
+git clone https://github.com/jaeyong-planner/marketing-ai-team.git
+```
+
+CI: `.github/workflows/ci.yml` (build on push). Supabase secrets는 GitHub repo Settings → Secrets에 추가 시 RLS 테스트 실행.
+
 ## Vercel (웹 앱)
 
 **Production**: https://marketing-ai-team-ten.vercel.app

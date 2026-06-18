@@ -3,7 +3,7 @@
 set -euo pipefail
 
 APP_DIR="${APP_DIR:-/opt/marketing}"
-REPO_URL="${REPO_URL:-}"
+REPO_URL="${REPO_URL:-https://github.com/jaeyong-planner/marketing-ai-team.git}"
 
 echo "[1/5] System packages"
 sudo apt-get update -qq

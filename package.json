@@ -24,7 +24,8 @@
     "deploy:env": "node scripts/push-vercel-env.mjs",
     "deploy:vercel": "vercel --prod --yes",
     "test:lighthouse": "node scripts/lighthouse-mobile.mjs",
-    "test:prod-smoke": "node scripts/prod-smoke.mjs"
+    "test:prod-smoke": "node scripts/prod-smoke.mjs",
+    "repo:create": "node scripts/create-github-repo.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

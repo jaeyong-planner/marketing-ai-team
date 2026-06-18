@@ -305,3 +305,16 @@ npm run test:e2e       → ALL PASS
 **전체 프로젝트 상태**: `LAUNCHED` — Vercel 프로덕션 LIVE
 
 ---
+
+## 2026-06-19 — GitHub repo 생성
+
+**트리거**: 사용자 "진행 생성해줘"
+
+| 항목 | 결과 |
+|------|------|
+| GitHub repo | https://github.com/jaeyong-planner/marketing-ai-team (public) |
+| push | master 3+ commits |
+| CI | `.github/workflows/ci.yml` |
+| VPS clone URL | `deploy/vps-setup.sh` 기본값 설정 |
+
+---
