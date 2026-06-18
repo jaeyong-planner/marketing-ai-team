@@ -1,0 +1,43 @@
+{
+  "name": "marketing-ai-team",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack -p 3000",
+    "dev:clean": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next dev --turbopack -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "start:e2e": "next start -p 3002",
+    "lint": "next lint",
+    "test:e2e:auth": "node scripts/e2e-auth.mjs",
+    "test:e2e:signup": "node scripts/e2e-signup.mjs",
+    "test:e2e:leads": "node scripts/e2e-leads.mjs",
+    "test:rls": "node scripts/verify-rls.mjs",
+    "test:e2e:approval": "node scripts/e2e-approval.mjs",
+    "test:e2e": "node scripts/e2e-auth.mjs && node scripts/e2e-signup.mjs && node scripts/e2e-leads.mjs && node scripts/verify-rls.mjs && node scripts/e2e-approval.mjs",
+    "agent:run": "node scripts/run-agent-cycle.mjs",
+    "agent:scheduler": "node scripts/agent-scheduler.mjs",
+    "test:scheduler": "node scripts/verify-scheduler.mjs",
+    "batch:content": "node scripts/batch-content.mjs",
+    "test:batch": "node scripts/verify-batch.mjs",
+    "test:vps-ready": "node scripts/verify-vps-readiness.mjs"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.108.2",
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.52.0",
+    "@tailwindcss/postcss": "^4.1.8",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "eslint": "^9.28.0",
+    "eslint-config-next": "^15.3.3",
+    "tailwindcss": "^4.1.8",
+    "typescript": "^5.8.3"
+  }
+}

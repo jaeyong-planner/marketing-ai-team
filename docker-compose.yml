@@ -1,0 +1,19 @@
+services:
+  agent-worker:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.agent
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      AGENT_MOCK: ${AGENT_MOCK:-true}
+      AGENT_INTERVAL_MS: ${AGENT_INTERVAL_MS:-14400000}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    volumes:
+      - ./content:/app/content:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

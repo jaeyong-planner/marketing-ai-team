@@ -1,0 +1,288 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": "1",
+        "title": "프로젝트 기반 세팅 및 Open Questions 확정",
+        "description": "PRD의 미결정 사항(타겟 제품, Hermes vs Langflow, 승인 채널, 예산)을 확정하고 개발 환경·폴더 구조·Git 저장소를 준비한다.",
+        "details": "1) Open Questions 답변 문서 작성 (docs/decisions.md): 판매 대상(시스템 자체 vs 파일럿 제품), 에이전트 스택(Hermes/Langflow/하이브리드), 승인 채널(Discord/웹/이메일), VPS 예산. 2) src/, assets/, content/, supabase/ 디렉토리 생성. 3) Next.js App Router 또는 Vite+React 스택 결정 및 스캐폴딩. 4) .env.example 키 목록 정리(SUPABASE_URL, SUPABASE_ANON_KEY, OPENAI_API_KEY 등). 5) Task Master 워크플로우 문서화.",
+        "testStrategy": "decisions.md에 5개 Open Questions 모두 답변 존재, npm run dev 로컬 실행 성공, .env.example과 README 명령어 일치 확인",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Open Questions 답변 문서 작성",
+            "description": "docs/decisions.md에 PRD 미결정 사항 5항목 확정(임시 기본값 포함)",
+            "dependencies": [],
+            "details": "판매대상 A(시스템 자체), 하이브리드 Hermes+Langflow, Discord+웹 승인, Next.js, 월 예산표 작성",
+            "status": "done",
+            "testStrategy": "decisions.md 5개 섹션 모두 결정란 채움",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "프로젝트 폴더 구조 확정",
+            "description": "src/, assets/, content/, supabase/, agent-prompts/ 디렉토리 준비",
+            "dependencies": [],
+            "details": "기존 .gitkeep 구조 유지, Next.js는 src/app 사용",
+            "status": "done",
+            "testStrategy": "필수 디렉토리 존재 확인",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Next.js App Router 스캐폴딩",
+            "description": "TypeScript + Tailwind v4 + 기본 랜딩 placeholder",
+            "dependencies": [
+              2
+            ],
+            "details": "package.json, next.config.ts, src/app/layout.tsx, page.tsx. npm run build 성공",
+            "status": "done",
+            "testStrategy": "npm run build exit 0",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "환경변수 템플릿 및 Git 준비",
+            "description": ".env.example Supabase/Discord/Analytics 키 정리, .gitignore Next.js 항목 추가",
+            "dependencies": [],
+            "details": "OPENAI, SUPABASE, RESEND, DISCORD, META/GTM 변수 문서화",
+            "status": "done",
+            "testStrategy": ".env.example과 README 명령어 일치",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 4,
+        "recommendedSubtasks": 4,
+        "expansionPrompt": "Open Questions 답변, 폴더 구조, 프레임워크 스캐폴딩, 환경변수 템플릿으로 분해",
+        "updatedAt": "2026-06-18T21:04:39.623Z"
+      },
+      {
+        "id": "2",
+        "title": "Supabase 프로젝트 생성 및 핵심 스키마 설계",
+        "description": "리드, 콘텐츠 캘린더, 승인, 발행, 캠페인, 분석 이벤트를 위한 PostgreSQL 스키마와 RLS 정책을 구축한다.",
+        "details": "테이블: leads(id, email, name, source, utm_*, created_at), content_calendar(id, title, type, status, body_md, meta_json, scheduled_at, agent_run_id), approvals(id, content_id, status, reviewer, comment, decided_at), published_posts(id, content_id, channel, url, published_at), campaigns(id, name, platform, budget), analytics_events(id, event_type, payload, session_id), agent_runs(id, agent_role, input, output, status, duration_ms). RLS: 인증된 admin만 CRUD. 마이그레이션 SQL을 supabase/migrations/에 저장. Supabase CLI link 및 db push.",
+        "testStrategy": "로컬/리모트에서 마이그레이션 적용 성공, anon 키로 leads INSERT 차단·service_role로 INSERT 허용, ERD 다이어그램 docs/에 저장",
+        "priority": "high",
+        "dependencies": [
+          "1"
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Supabase 프로젝트 생성",
+            "description": "Supabase 프로젝트를 생성하고 초기 설정을 완료한다.",
+            "dependencies": [],
+            "details": "Supabase CLI를 사용하여 새로운 프로젝트를 생성하고, 데이터베이스 연결을 설정한다. 필요한 환경 변수를 구성하고, 초기 마이그레이션 파일을 생성한다.",
+            "status": "done",
+            "testStrategy": null,
+            "parentId": "undefined",
+            "updatedAt": "2026-06-18T21:14:22.895Z"
+          },
+          {
+            "id": 2,
+            "title": "테이블별 마이그레이션 SQL 작성",
+            "description": "각 테이블에 대한 마이그레이션 SQL 파일을 작성하고 supabase/migrations/에 저장한다.",
+            "dependencies": [
+              1
+            ],
+            "details": "각 테이블의 구조에 맞춰 SQL 문을 작성하고, 이를 supabase/migrations/ 디렉토리에 저장한다. RLS 정책도 포함하여 인증된 admin만 CRUD 작업을 수행할 수 있도록 설정한다.",
+            "status": "done",
+            "testStrategy": null,
+            "parentId": "undefined",
+            "updatedAt": "2026-06-18T21:14:33.028Z"
+          }
+        ],
+        "complexity": 7,
+        "recommendedSubtasks": 6,
+        "expansionPrompt": "프로젝트 생성, 테이블별 마이그레이션, RLS, Edge Function 스텁, 시드 데이터, ERD로 분해",
+        "updatedAt": "2026-06-18T21:14:33.028Z"
+      },
+      {
+        "id": "3",
+        "title": "24시간 AI 에이전트 팀 아키텍처 구축 (Hermes/Langflow)",
+        "description": "Researcher→Writer→Editor→SEO→Publisher→Analyst 역할의 자율 에이전트 파이프라인을 VPS 또는 서버에서 지속 실행 가능하게 구축한다.",
+        "details": "docs/AI-Team-Architecture.md 기반 구현. Option A: Hermes Agent + systemd/pm2. Option B: Langflow 워크플로우 + cron/queue. 각 에이전트 프롬프트 템플릿(agent-prompts/) 정의. 스케줄 트리거(매 4~6시간) + 수동 주제 주입 API. agent_runs 테이블에 실행 로그 저장. gemma3:4b(로컬) + 클라우드 모델 폴백. 모니터링: 로그 파일 + Supabase agent_runs.",
+        "testStrategy": "에이전트 1사이클(Researcher→Writer) 수동 트리거 후 content_calendar에 draft 레코드 생성, agent_runs에 2건 이상 로그, VPS 재부팅 후 자동 재시작 확인",
+        "priority": "high",
+        "dependencies": [
+          "1",
+          "2"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 9,
+        "recommendedSubtasks": 8,
+        "expansionPrompt": "스택 선택, 에이전트별 프롬프트, 오케스트레이션, 스케줄러, 로깅, 모델 폴백, 로컬 테스트, VPS 연동 준비로 분해"
+      },
+      {
+        "id": "4",
+        "title": "인간 승인 게이트(Human Approval Gate) 구현",
+        "description": "승인 전 외부 배포가 불가능하도록 승인 큐와 알림 인터페이스를 구현한다.",
+        "details": "최소 1채널 구현(Discord 봇 권장 또는 Next.js /admin/approvals). 상태: pending_review → approved/rejected/needs_revision. Supabase approvals 테이블 + content_calendar.status 연동. Edge Function: on_approval_approved → Publisher 트리거. Discord: 버튼 Approve/Reject + 코멘트. 이메일 알림(옵션): Resend. FR-2 준수: 미승인 콘텐츠 publish API 차단.",
+        "testStrategy": "draft 콘텐츠 생성→승인 대기 알림 수신→Approve 클릭→status=approved 및 Publisher 트리거 로그 확인, Reject 시 배포 미발생 검증",
+        "priority": "high",
+        "dependencies": [
+          "2",
+          "3"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 7,
+        "recommendedSubtasks": 5,
+        "expansionPrompt": "채널 선택, DB 상태머신, Discord/웹 UI, Edge Function 트리거, 미승인 배포 차단으로 분해"
+      },
+      {
+        "id": "5",
+        "title": "고전환 마케팅 랜딩 페이지 제작",
+        "description": "30초 내 가치 전달 + 강력 CTA의 마케팅 웹사이트를 제작하고 SEO·모바일·A/B 테스트 구조를 갖춘다.",
+        "details": "섹션: Hero(한 줄 가치제안), How it works(에이전트 다이어그램), Demo/스크린샷, Social proof, Pricing/CTA, FAQ. Next.js + Tailwind 또는 frontend-design 스킬 활용. SEO: title/description/OG/Twitter cards/sitemap.xml/robots.txt. A/B: 헤드라인 2변형(feature flag 또는 Vercel Edge Config). Lighthouse 모바일 90+ 목표. Vercel 배포.",
+        "testStrategy": "모바일/데스크톱 3 breakpoint 레이아웃 확인, OG 미리보기 정상, A/B variant 전환 동작, PageSpeed Insights LCP<2.5s",
+        "priority": "high",
+        "dependencies": [
+          "1",
+          "2"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 6,
+        "recommendedSubtasks": 5,
+        "expansionPrompt": "디자인 시스템, 섹션별 컴포넌트, SEO/OG, A/B 구조, Vercel 배포로 분해"
+      },
+      {
+        "id": "6",
+        "title": "리드 캡처 폼 및 이메일 자동화 연동",
+        "description": "랜딩 페이지 리드 폼을 Supabase에 저장하고 즉시 감사/ nurture 이메일 자동화를 연결한다.",
+        "details": "폼 필드: name, email, interest(선택). Supabase leads INSERT(RLS: public insert 허용 또는 Edge Function 경유). UTM 파라미터 자동 수집. Resend/SendGrid Edge Function: welcome email 발송. honeypot + rate limit 스팸 방지. leads 테이블 source 필드에 utm_campaign 매핑.",
+        "testStrategy": "테스트 제출 3건→leads 테이블 저장+UTM 기록, welcome 이메일 1분 내 수신, 스팸 honeypot 차단 확인",
+        "priority": "high",
+        "dependencies": [
+          "2",
+          "5"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 5,
+        "recommendedSubtasks": 4,
+        "expansionPrompt": "폼 UI, Supabase insert, UTM 수집, Resend Edge Function으로 분해"
+      },
+      {
+        "id": "7",
+        "title": "운영 관리 대시보드 (리드·콘텐츠·승인)",
+        "description": "Supabase Auth 기반 관리자 페이지에서 리드 목록, 콘텐츠 상태, 승인 액션을 한 화면에서 처리한다.",
+        "details": "경로: /admin (이메일 로그인 only). 뷰: Leads 테이블(필터/CSV export), Content Calendar(kanban: draft/review/approved/published), Approval Queue(일괄 승인). Realtime 구독으로 신규 리드 알림. Edge Function 연동 버튼: Approve→publish 트리거.",
+        "testStrategy": "admin 로그인 후 비인증 /admin 접근 401, 리드 실시간 반영, 콘텐츠 상태 변경이 DB와 UI 동기화",
+        "priority": "medium",
+        "dependencies": [
+          "2",
+          "4",
+          "5"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 7,
+        "recommendedSubtasks": 5,
+        "expansionPrompt": "Auth, Leads 뷰, Content Kanban, Approval Queue, Realtime으로 분해"
+      },
+      {
+        "id": "8",
+        "title": "콘텐츠 에셋 대량 생산 파이프라인",
+        "description": "AI 팀이 블로그·소셜·이메일 시퀀스를 생성하고 승인 후 배포까지 연결하는 초기 콘텐츠 물량을 확보한다.",
+        "details": "주제 풀 10+개(content/topics.json). 산출 목표: 블로그 5~8편, 소셜 20+개, 이메일 nurture 5~7통. 모든 초안 content_calendar 등록. 승인 플로우 통과 후 1개 이상 채널(X 또는 블로그) 실제 배포. content/ 폴더에 마크다운 원본 보관. Publisher 에이전트: 채널별 포맷 변환.",
+        "testStrategy": "content_calendar 15+ 레코드, approvals 5+ 기록, published_posts 1+ URL 존재, 전체 파이프라인 E2E 1회 문서화",
+        "priority": "medium",
+        "dependencies": [
+          "3",
+          "4",
+          "7"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 8,
+        "recommendedSubtasks": 6,
+        "expansionPrompt": "주제 풀, 블로그 배치, 소셜 배치, 이메일 시퀀스, 승인 E2E, 채널 배포로 분해"
+      },
+      {
+        "id": "9",
+        "title": "광고·퍼포먼스 추적 인프라 세팅",
+        "description": "Meta Pixel, GTM, UTM 템플릿, Supabase 이벤트 수집으로 광고 성과를 측정 가능하게 한다.",
+        "details": "랜딩에 Meta Pixel + Google Tag Manager 설치. UTM 템플릿 문서(docs/utm-guide.md). analytics_events에 page_view, lead_submit, cta_click 수집. campaigns 테이블에 테스트 캠페인 1~2개 등록. Meta/Google Ads 초기 테스트 캠페인 가이드(예산 소액). CPA/CPL 계산 쿼리.",
+        "testStrategy": "Pixel Helper/GTM Preview에서 이벤트 확인, UTM 링크 클릭 시 leads.source 정확, 테스트 광고 1건 impressions 기록",
+        "priority": "medium",
+        "dependencies": [
+          "5",
+          "6"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 6,
+        "recommendedSubtasks": 5,
+        "expansionPrompt": "Pixel/GTM, UTM 가이드, analytics_events, 테스트 캠페인, CPA 쿼리로 분해"
+      },
+      {
+        "id": "10",
+        "title": "KPI 대시보드 및 A/B 테스트 루프",
+        "description": "주요 KPI 시각화와 최소 1개 A/B 테스트를 실행하여 데이터 기반 개선 루프를 완성한다.",
+        "details": "/admin/analytics 페이지: 방문, 리드, CPA, 콘텐츠 발행 수, 승인율. A/B 테스트 1건(헤드라인 또는 CTA) 2주간 실행. 주간 리포트 템플릿(docs/weekly-report-template.md). Analyst 에이전트: 성과 데이터→다음 주제 3개 제안(옵션).",
+        "testStrategy": "대시보드에 실데이터 10+ leads 반영, A/B variant별 전환율 비교 표시, 주간 리포트 1회 생성",
+        "priority": "medium",
+        "dependencies": [
+          "6",
+          "8",
+          "9"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 7,
+        "recommendedSubtasks": 5,
+        "expansionPrompt": "KPI 쿼리, 차트 UI, A/B 실험, 주간 리포트, Analyst 피드백 루프로 분해"
+      },
+      {
+        "id": "11",
+        "title": "VPS 24/7 배포 및 운영 인프라",
+        "description": "노트북 종료 후에도 AI 에이전트가 동작하도록 VPS에 영구 실행 환경을 구축한다.",
+        "details": "Hostinger 등 VPS(월 1~3만원 목표). Docker Compose: hermes/langflow + 환경변수. systemd 또는 pm2 자동 재시작. HTTPS(nginx/caddy). 로그 로테이션. 백업: Supabase는 managed, 에이전트 설정 git. 비용 모니터링 체크리스트.",
+        "testStrategy": "VPS SSH 접속, 에이전트 24시간 uptime 확인, 로컬 PC 종료 후에도 agent_runs 4시간 내 신규 레코드, 재부팅 후 자동 복구",
+        "priority": "high",
+        "dependencies": [
+          "3"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 8,
+        "recommendedSubtasks": 6,
+        "expansionPrompt": "VPS 프로비저닝, Docker, HTTPS, 자동 재시작, 모니터링, 비용 체크로 분해"
+      },
+      {
+        "id": "12",
+        "title": "런칭 문서화 및 운영 매뉴얼 완성",
+        "description": "구축 과정·운영 방법·사례를 문서화하여 실제 런칭 레퍼런스로 활용 가능하게 한다.",
+        "details": "문서: README(현황), docs/PRD.md, docs/AI-Team-Architecture.md, docs/OPERATIONS.md(일일/주간 체크리스트), docs/LAUNCH-PLAYBOOK.md. 스크린샷: 승인 전/후, 대시보드, 에이전트 로그. KPI 달성 여부 MVP 체크리스트. GitHub public 또는 포트폴리오용 정리.",
+        "testStrategy": "신규 팀원이 OPERATIONS.md만으로 승인 1건 처리 가능, MVP KPI 5항목 체크리스트 완료율 80%+",
+        "priority": "medium",
+        "dependencies": [
+          "8",
+          "10",
+          "11"
+        ],
+        "status": "pending",
+        "subtasks": [],
+        "complexity": 4,
+        "recommendedSubtasks": 4,
+        "expansionPrompt": "OPERATIONS.md, LAUNCH-PLAYBOOK, 스크린샷, MVP 체크리스트로 분해"
+      }
+    ],
+    "metadata": {
+      "version": "1.0.0",
+      "lastModified": "2026-06-18T21:14:33.028Z",
+      "taskCount": 12,
+      "completedCount": 2,
+      "tags": [
+        "master"
+      ]
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "generatedAt": "2026-06-19T06:00:00.000Z",
+    "tasksAnalyzed": 12,
+    "totalTasks": 12,
+    "analysisCount": 12,
+    "thresholdScore": 5,
+    "projectName": "Marketing AI Team",
+    "usedResearch": false,
+    "note": "PRD 기반 수동 복잡도 분석 — analyze-complexity --research API 키 실패 대체"
+  },
+  "complexityAnalysis": [
+    {
+      "taskId": 1,
+      "taskTitle": "프로젝트 기반 세팅 및 Open Questions 확정",
+      "complexityScore": 4,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Open Questions 답변, 폴더 구조, 프레임워크 스캐폴딩, 환경변수 템플릿으로 분해",
+      "reasoning": "의사결정 문서화가 핵심. 기술 난이도는 낮으나 후속 태스크 블로커."
+    },
+    {
+      "taskId": 2,
+      "taskTitle": "Supabase 프로젝트 생성 및 핵심 스키마 설계",
+      "complexityScore": 7,
+      "recommendedSubtasks": 6,
+      "expansionPrompt": "프로젝트 생성, 테이블별 마이그레이션, RLS, Edge Function 스텁, 시드 데이터, ERD로 분해",
+      "reasoning": "6+ 테이블과 RLS 설계. 전체 시스템의 데이터 기반."
+    },
+    {
+      "taskId": 3,
+      "taskTitle": "24시간 AI 에이전트 팀 아키텍처 구축",
+      "complexityScore": 9,
+      "recommendedSubtasks": 8,
+      "expansionPrompt": "스택 선택, 에이전트별 프롬프트, 오케스트레이션, 스케줄러, 로깅, 모델 폴백, 로컬 테스트, VPS 연동 준비로 분해",
+      "reasoning": "프로젝트 최고 복잡도. Hermes/Langflow 선택과 멀티 에이전트 조율."
+    },
+    {
+      "taskId": 4,
+      "taskTitle": "인간 승인 게이트 구현",
+      "complexityScore": 7,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "채널 선택, DB 상태머신, Discord/웹 UI, Edge Function 트리거, 미승인 배포 차단으로 분해",
+      "reasoning": "FR-2 핵심. 멀티 채널 알림과 상태 동기화 필요."
+    },
+    {
+      "taskId": 5,
+      "taskTitle": "고전환 마케팅 랜딩 페이지 제작",
+      "complexityScore": 6,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "디자인 시스템, 섹션별 컴포넌트, SEO/OG, A/B 구조, Vercel 배포로 분해",
+      "reasoning": "UI 품질과 전환 최적화. Supabase 연동 전 독립 진행 가능."
+    },
+    {
+      "taskId": 6,
+      "taskTitle": "리드 캡처 폼 및 이메일 자동화 연동",
+      "complexityScore": 5,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "폼 UI, Supabase insert, UTM 수집, Resend Edge Function으로 분해",
+      "reasoning": "표준 풀퍼널 패턴. 스팸 방지와 UTM이 추가 요소."
+    },
+    {
+      "taskId": 7,
+      "taskTitle": "운영 관리 대시보드",
+      "complexityScore": 7,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Auth, Leads 뷰, Content Kanban, Approval Queue, Realtime으로 분해",
+      "reasoning": "3개 뷰 + Realtime. 승인 게이트와 밀접 연동."
+    },
+    {
+      "taskId": 8,
+      "taskTitle": "콘텐츠 에셋 대량 생산 파이프라인",
+      "complexityScore": 8,
+      "recommendedSubtasks": 6,
+      "expansionPrompt": "주제 풀, 블로그 배치, 소셜 배치, 이메일 시퀀스, 승인 E2E, 채널 배포로 분해",
+      "reasoning": "AI 생성 + 인간 승인 + 실제 배포 E2E. MVP 성공 기준 직결."
+    },
+    {
+      "taskId": 9,
+      "taskTitle": "광고·퍼포먼스 추적 인프라 세팅",
+      "complexityScore": 6,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Pixel/GTM, UTM 가이드, analytics_events, 테스트 캠페인, CPA 쿼리로 분해",
+      "reasoning": "외부 플랫폼 연동. 초기 테스트 수준."
+    },
+    {
+      "taskId": 10,
+      "taskTitle": "KPI 대시보드 및 A/B 테스트 루프",
+      "complexityScore": 7,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "KPI 쿼리, 차트 UI, A/B 실험, 주간 리포트, Analyst 피드백 루프로 분해",
+      "reasoning": "데이터 집계와 실험 설계. 충분한 트래픽 필요."
+    },
+    {
+      "taskId": 11,
+      "taskTitle": "VPS 24/7 배포 및 운영 인프라",
+      "complexityScore": 8,
+      "recommendedSubtasks": 6,
+      "expansionPrompt": "VPS 프로비저닝, Docker, HTTPS, 자동 재시작, 모니터링, 비용 체크로 분해",
+      "reasoning": "FR-1 핵심. DevOps + 에이전트 런타임 결합."
+    },
+    {
+      "taskId": 12,
+      "taskTitle": "런칭 문서화 및 운영 매뉴얼 완성",
+      "complexityScore": 4,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "OPERATIONS.md, LAUNCH-PLAYBOOK, 스크린샷, MVP 체크리스트로 분해",
+      "reasoning": "기술 난이도 낮음. 전 태스크 완료 후 통합 문서화."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+[Unit]
+Description=Marketing AI Agent Scheduler (24/7)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=marketing
+WorkingDirectory=/opt/marketing
+EnvironmentFile=/opt/marketing/.env
+ExecStart=/usr/bin/node scripts/agent-scheduler.mjs
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=marketing-agent
+
+[Install]
+WantedBy=multi-user.target
