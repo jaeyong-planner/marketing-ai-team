@@ -26,4 +26,4 @@
 - README 현황 섹션
 - `docs/PIPELINE-E2E.md` — E2E 증빙
 - 스크린샷: `/admin`, `/admin/approvals`, `/admin/analytics`
-- GitHub public repo (비밀키 제외)
+- [x] GitHub public repo — https://github.com/jaeyong-planner/marketing-ai-team
