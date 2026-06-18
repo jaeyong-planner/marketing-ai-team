@@ -275,3 +275,33 @@ npm run test:e2e       → ALL PASS
 **전체 프로젝트 상태**: `MVP_READY` — 로컬·원격 DB 기준 기능 완료, 프로덕션 배포만 남음
 
 ---
+
+## 2026-06-19 — Act/Verify (프로덕션 런칭)
+
+**Phase**: Deploy → Verify  
+**트리거**: 사용자 지시 "진행"
+
+### 수행 작업
+
+| 항목 | 결과 |
+|------|------|
+| Vercel link + env push | DONE |
+| Production 배포 | https://marketing-ai-team-ten.vercel.app |
+| Supabase auth redirect | `config push --yes` |
+| Lighthouse mobile | performance **100** (≥90) |
+| prod-smoke | `/`, `/login`, `/api/leads` PASS |
+
+### 신규 파일
+
+- `vercel.json`, `docs/DEPLOY.md`
+- `scripts/push-vercel-env.mjs`, `prod-smoke.mjs`, `lighthouse-mobile.mjs`
+
+### 남은 작업
+
+- VPS 실제 호스트 배포 (`deploy/vps-setup.sh` — SSH 필요)
+- Meta/Google 소액 광고 테스트
+- 커스텀 도메인 (선택)
+
+**전체 프로젝트 상태**: `LAUNCHED` — Vercel 프로덕션 LIVE
+
+---

@@ -18,8 +18,13 @@ port = 54323
 
 [auth]
 enabled = true
-site_url = "http://localhost:3000"
-additional_redirect_urls = ["http://localhost:3000/**"]
+site_url = "https://marketing-ai-team-ten.vercel.app"
+additional_redirect_urls = [
+  "http://localhost:3000/**",
+  "http://localhost:3002/**",
+  "https://marketing-ai-team-ten.vercel.app/**",
+  "https://marketing-ai-team-*-jaeyong-planners-projects.vercel.app/**"
+]
 enable_signup = true
 
 [auth.email]

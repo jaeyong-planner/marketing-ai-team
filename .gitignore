@@ -30,3 +30,9 @@ out/
 
 # Agent scheduler runtime
 .agent-scheduler-state.json
+
+# Vercel / Lighthouse
+.vercel
+.lighthouse
+
+.vercel

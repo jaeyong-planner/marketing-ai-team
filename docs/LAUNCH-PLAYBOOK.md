@@ -8,9 +8,9 @@
 - [x] VPS 스케줄러 템플릿
 - [x] GTM/Pixel + analytics_events
 - [x] 콘텐츠 배치 + KPI 대시보드
-- [ ] 프로덕션 도메인 + HTTPS
+- [x] 프로덕션 도메인 + HTTPS — https://marketing-ai-team-ten.vercel.app
 - [ ] Meta/Google 테스트 광고 1건
-- [ ] Lighthouse 모바일 90+
+- [x] Lighthouse 모바일 90+ — performance 100 (2026-06-19)
 
 ## 런칭 순서
 

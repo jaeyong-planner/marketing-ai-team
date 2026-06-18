@@ -20,7 +20,11 @@
     "test:scheduler": "node scripts/verify-scheduler.mjs",
     "batch:content": "node scripts/batch-content.mjs",
     "test:batch": "node scripts/verify-batch.mjs",
-    "test:vps-ready": "node scripts/verify-vps-readiness.mjs"
+    "test:vps-ready": "node scripts/verify-vps-readiness.mjs",
+    "deploy:env": "node scripts/push-vercel-env.mjs",
+    "deploy:vercel": "vercel --prod --yes",
+    "test:lighthouse": "node scripts/lighthouse-mobile.mjs",
+    "test:prod-smoke": "node scripts/prod-smoke.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

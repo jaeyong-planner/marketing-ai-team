@@ -38,7 +38,7 @@
 | T-L2 | 모바일 3 breakpoint | 레이아웃 깨짐 없음 | NOT_RUN |
 | T-L3 | 리드 폼 3건 제출 | leads 테이블 | **PASS** | e2e-leads 1건 |
 | T-L4 | UTM 파라미터 저장 | utm_* 필드 | **PASS** | e2e-leads |
-| T-L5 | Lighthouse 모바일 | score ≥ 90 | NOT_RUN |
+| T-L5 | Lighthouse 모바일 | score ≥ 90 | **PASS** (100) | 2026-06-19 prod |
 
 ## 5. 승인 / 에이전트
 

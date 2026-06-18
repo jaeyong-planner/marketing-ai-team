@@ -18,7 +18,9 @@
 - ✅ Supabase `marketing-ai-team` link + 마이그레이션 2개
 - ✅ `npm run test:e2e` · `test:batch` · `test:scheduler` PASS
 - 📄 운영: `docs/OPERATIONS.md`, `docs/LAUNCH-PLAYBOOK.md`, `docs/vps-deploy.md`
-- ⏳ **다음**: 프로덕션 도메인, 실제 VPS 배포, Lighthouse 90+
+- ✅ **Production**: https://marketing-ai-team-ten.vercel.app
+- ✅ Lighthouse mobile performance **100**
+- ⏳ **다음**: VPS 실제 호스트 배포, 광고 테스트
 
 ### 주요 명령
 
